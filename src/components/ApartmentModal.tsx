@@ -78,7 +78,6 @@ const ApartmentModal: React.FC<ApartmentModalProps> = ({
     }
   };
 
-
   const isCommercial = ["shop", "office"].includes(
     apartment.type.toLowerCase()
   );
@@ -185,9 +184,7 @@ const ApartmentModal: React.FC<ApartmentModalProps> = ({
 
               {/* Payment Options */}
               <div>
-                <h3 className="text-xl font-semibold mb-4">
-                  Payment Options
-                </h3>
+                <h3 className="text-xl font-semibold mb-4">Payment Options</h3>
 
                 {apartment.installmentOptions ? (
                   <div className="border border-gray-200 rounded-lg p-4">
@@ -255,69 +252,67 @@ const ApartmentModal: React.FC<ApartmentModalProps> = ({
             </div>
 
             {/* Image Viewer */}
-            {!isCommercial &&
-              apartment.renders &&
-              apartment.renders.length > 0 && (
-                <div className="mt-8 flex flex-col items-center">
-                  <h3 className="text-xl font-semibold mb-4">
-                    {apartment.renders.length > 1
-                      ? "Image Gallery"
-                      : "Render & Image"}
-                  </h3>
-                  <div className="items-center text-red-700 text-sm mt-2 border-red-700 bg-red-100 rounded-full flex px-3 py-2 mb-4">
-                    <Image
-                      src="/assets/disclaimer.png"
-                      alt="Disclaimer"
-                      width={16}
-                      height={16}
-                      className="mr-2 flex-shrink-0"
-                    />
-                    These images are for illustration purposes only and don't
-                    represent the actual apartment.
-                  </div>
-                  <div className="relative w-full max-w-2xl h-96 bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
-                    <Image
-                      src={apartment.renders[currentImageIndex]}
-                      alt={`Apartment ${apartment.number} render`}
-                      fill
-                      className="object-contain cursor-pointer"
-                      onClick={() => setLightboxOpen(true)}
-                    />
-                    {apartment.renders.length > 1 && (
-                      <>
-                        <button
-                          className="absolute left-2 top-1/2 -translate-y-1/2 bg-primary p-2 rounded-full shadow hover:bg-gray-200 hover:text-primary"
-                          onClick={() =>
-                            setCurrentImageIndex(
-                              (i) =>
-                                (i - 1 + apartment.renders!.length) %
-                                apartment.renders!.length
-                            )
-                          }
-                        >
-                          <FaChevronLeft />
-                        </button>
-                        <button
-                          className="absolute right-2 top-1/2 -translate-y-1/2 bg-primary p-2 rounded-full shadow hover:bg-gray-200 hover:text-primary"
-                          onClick={() =>
-                            setCurrentImageIndex(
-                              (i) => (i + 1) % apartment.renders!.length
-                            )
-                          }
-                        >
-                          <FaChevronRight />
-                        </button>
-                      </>
-                    )}
-                    <button
-                      className="absolute bottom-2 right-2 bg-primary p-2 rounded-full shadow hover:bg-gray-200 hover:text-primary"
-                      onClick={() => setLightboxOpen(true)}
-                    >
-                      <FaExpand />
-                    </button>
-                  </div>
+            {apartment.renders && apartment.renders.length > 0 && (
+              <div className="mt-8 flex flex-col items-center">
+                <h3 className="text-xl font-semibold mb-4">
+                  {apartment.renders.length > 1
+                    ? "Image Gallery"
+                    : "Render & Image"}
+                </h3>
+                <div className="items-center text-red-700 text-sm mt-2 border-red-700 bg-red-100 rounded-full flex px-3 py-2 mb-4">
+                  <Image
+                    src="/assets/disclaimer.png"
+                    alt="Disclaimer"
+                    width={16}
+                    height={16}
+                    className="mr-2 flex-shrink-0"
+                  />
+                  These images are for illustration purposes only and don't
+                  represent the actual apartment.
                 </div>
-              )}
+                <div className="relative w-full max-w-2xl h-96 bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center">
+                  <Image
+                    src={apartment.renders[currentImageIndex]}
+                    alt={`Apartment ${apartment.number} render`}
+                    fill
+                    className="object-contain cursor-pointer"
+                    onClick={() => setLightboxOpen(true)}
+                  />
+                  {apartment.renders.length > 1 && (
+                    <>
+                      <button
+                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-primary p-2 rounded-full shadow hover:bg-gray-200 hover:text-primary"
+                        onClick={() =>
+                          setCurrentImageIndex(
+                            (i) =>
+                              (i - 1 + apartment.renders!.length) %
+                              apartment.renders!.length
+                          )
+                        }
+                      >
+                        <FaChevronLeft />
+                      </button>
+                      <button
+                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-primary p-2 rounded-full shadow hover:bg-gray-200 hover:text-primary"
+                        onClick={() =>
+                          setCurrentImageIndex(
+                            (i) => (i + 1) % apartment.renders!.length
+                          )
+                        }
+                      >
+                        <FaChevronRight />
+                      </button>
+                    </>
+                  )}
+                  <button
+                    className="absolute bottom-2 right-2 bg-primary p-2 rounded-full shadow hover:bg-gray-200 hover:text-primary"
+                    onClick={() => setLightboxOpen(true)}
+                  >
+                    <FaExpand />
+                  </button>
+                </div>
+              </div>
+            )}
 
             {/* CTA */}
             <div className="mt-8 p-6 rounded-lg glass-dark">
